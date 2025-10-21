@@ -8,8 +8,18 @@ class InicioController extends \Com\Daw2\Core\BaseController {
         $data = array(
             'titulo' => 'Página de inicio',
             'breadcrumb' => ['Inicio'],
-            'seccion' => '/inicio'
+            'seccion' => '/inicio',
         );        
+        $this->view->showViews(array('templates/header.view.php', 'inicio.view.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function index2() {
+        $data = array(
+            'titulo' => 'Página de inicio 2',
+            'breadcrumb' => ['Inicio2'],
+            'seccion' => '/inicio2',
+            'numProductos' => '1500'
+        );
         $this->view->showViews(array('templates/header.view.php', 'inicio.view.php', 'templates/footer.view.php'), $data);
     }
     
