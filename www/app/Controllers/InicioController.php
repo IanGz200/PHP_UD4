@@ -13,7 +13,9 @@ class InicioController extends \Com\Daw2\Core\BaseController
             'breadcrumb' => ['Inicio'],
             'seccion' => '/inicio',
         );
-        $this->view->showViews(array('templates/header.view.php', 'inicio.view.php', 'templates/footer.view.php'), $data);
+        $this->
+        view->
+        showViews(array('templates/header.view.php', 'inicio.view.php', 'templates/footer.view.php'), $data);
     }
 
     public function index2()
@@ -24,7 +26,9 @@ class InicioController extends \Com\Daw2\Core\BaseController
             'seccion' => '/inicio2',
             'numProductos' => '1500'
         );
-        $this->view->showViews(array('templates/header.view.php', 'inicio.view.php', 'templates/footer.view.php'), $data);
+        $this->
+        view->
+        showViews(array('templates/header.view.php', 'inicio.view.php', 'templates/footer.view.php'), $data);
     }
 
     public function demo()
@@ -34,6 +38,8 @@ class InicioController extends \Com\Daw2\Core\BaseController
             'breadcrumb' => ['Inicio', 'Demo proveedores'],
             'seccion' => '/demo-proveedores'
         );
-        $this->view->showViews(array('templates/header.view.php', 'proveedores.sample.php', 'templates/footer.view.php'), $data);
+        $this->
+        view->
+        showViews(array('templates/header.view.php', 'proveedores.sample.php', 'templates/footer.view.php'), $data);
     }
 }

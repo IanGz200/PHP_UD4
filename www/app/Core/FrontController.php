@@ -35,6 +35,29 @@ class FrontController
             'get'
         );
 
+        /**
+         * Ejercicios Iterativas
+         */
+        Route::add(
+            '/iterativas3',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\IterativasController();
+                $controlador->ejercicio3();
+            },
+            'get'
+        );
+        Route::add(
+            '/iterativas3',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\IterativasController();
+                $controlador->doEjercicio3();
+            },
+            'post'
+        );
+
+        /**
+         * Errores
+         */
         Route::pathNotFound(
             function () {
                 $controller = new \Com\Daw2\Controllers\ErroresController();
