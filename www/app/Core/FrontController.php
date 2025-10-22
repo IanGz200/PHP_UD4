@@ -4,39 +4,46 @@ namespace Com\Daw2\Core;
 
 use Steampixel\Route;
 
-class FrontController{
-    
-    static function main(){
-        Route::add('/', 
-                function(){
-                    $controlador = new \Com\Daw2\Controllers\InicioController();
-                    $controlador->index();
-                }
-                , 'get');
+class FrontController
+{
+    static function main()
+    {
+        Route::add(
+            '/',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\InicioController();
+                $controlador->index();
+            },
+            'get'
+        );
 
-        Route::add('/inicio2',
-            function(){
+        Route::add(
+            '/inicio2',
+            function () {
                 $controlador = new \Com\Daw2\Controllers\InicioController();
                 $controlador->index2();
-            }
-            , 'get');
-                
-        Route::add('/demo-proveedores', 
-                function(){
-                    $controlador = new \Com\Daw2\Controllers\InicioController();
-                    $controlador->demo();
-                }
-                , 'get');
-                
+            },
+            'get'
+        );
+
+        Route::add(
+            '/demo-proveedores',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\InicioController();
+                $controlador->demo();
+            },
+            'get'
+        );
+
         Route::pathNotFound(
-            function(){
+            function () {
                 $controller = new \Com\Daw2\Controllers\ErroresController();
                 $controller->error404();
             }
         );
-        
+
         Route::methodNotAllowed(
-            function(){
+            function () {
                 $controller = new \Com\Daw2\Controllers\ErroresController();
                 $controller->error405();
             }
@@ -44,4 +51,3 @@ class FrontController{
         Route::run();
     }
 }
-

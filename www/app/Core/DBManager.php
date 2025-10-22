@@ -4,28 +4,32 @@ declare(strict_types=1);
 
 namespace Com\Daw2\Core;
 
-use \PDO;
+use PDO;
 
-class DBManager {
-
+class DBManager
+{
     // Contenedor de la instancia de la Clase
     private static $instance;
     private $db;
 
     //Previene creacion de objetos via new
 
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     // Única forma para obtener el objeto singleton
 
-    public static function getInstance() {
+    public static function getInstance()
+    {
         if (is_null(self::$instance)) {
             self::$instance = new self();
         }
         return self::$instance;
     }
 
-    public function getConnection($emulatePrepares = false) {
+    public function getConnection($emulatePrepares = false)
+    {
         if (is_null($this->db)) {
             $host = $_ENV['db.host'];
             $db = $_ENV['db.schema'];
@@ -42,11 +46,10 @@ class DBManager {
             ];
             try {
                 $this->db = new PDO($dsn, $user, $pass, $options);
-            } catch(\PDOException $e){
+            } catch (\PDOException $e) {
                 throw new \PDOException($e->getMessage(), (int)$e->getCode());
             }
         }
         return $this->db;
     }
-
 }

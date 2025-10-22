@@ -77,9 +77,9 @@
           <a href="#" class="d-block">Usuario</a>
         </div>
       </div>
-     <?php 
-     include $_ENV['folder.views'].'/templates/left-menu.view.php';
-     ?>      
+     <?php
+     include $_ENV['folder.views'] . '/templates/left-menu.view.php';
+        ?>      
     </div>
     <!-- /.sidebar -->
   </aside>
@@ -91,27 +91,27 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0"><?php             
+            <h1 class="m-0"><?php
             echo isset($titulo) ? $titulo : '' ?></h1>
           </div><!-- /.col -->
-          <?php 
-          
-          if(isset($breadcrumb) && is_array($breadcrumb)){
-              ?>          
+          <?php
+
+            if (isset($breadcrumb) && is_array($breadcrumb)) {
+                ?>          
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <?php    
-                
-                foreach($breadcrumb as $b){
-                ?>
+                <?php
+
+                foreach ($breadcrumb as $b) {
+                    ?>
               <li class="breadcrumb-item"><?php echo $b; ?></li>             
-              <?php
+                    <?php
                 }?>
             </ol>
           </div><!-- /.col -->
-          <?php
-          }
-          ?>
+                <?php
+            }
+            ?>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
