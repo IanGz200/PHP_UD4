@@ -42,7 +42,7 @@ class FrontController
             '/iterativas3',
             function () {
                 $controlador = new \Com\Daw2\Controllers\IterativasController();
-                $controlador->ejercicio3();
+                $controlador->iterativas3();
             },
             'get'
         );
@@ -50,7 +50,7 @@ class FrontController
             '/iterativas3',
             function () {
                 $controlador = new \Com\Daw2\Controllers\IterativasController();
-                $controlador->doEjercicio3();
+                $controlador->doIterativas3();
             },
             'post'
         );

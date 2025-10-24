@@ -22,14 +22,22 @@ declare(strict_types=1);
                                maxlength="9999"
                                placeholder="1,2,3|4,5,6|7,8,9"
                         />
-                        <p class="text-error small">
+                        <p class="text-danger small">
                             <?php
                             echo $errors['matriz'] ?? '';
                             ?>
                         </p>
+                        <?php if (isset($data['resultado'])) { ?>
+                            <div class="row">
+                                <p class="text-success small">
+                                    <?php echo $data['resultado'] ?>
+                                </p>
+                            </div>
+                        <?php }?>
                     </div>
                 </div>
             </div>
+
         </div>
         <div class="card-footer">
             <div class="col-12 text-right">
