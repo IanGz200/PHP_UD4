@@ -74,20 +74,100 @@ class IterativasController extends BaseController
         return $errors;
     }
 
+    ///\p{L}/u Letras regexp
+
     private function resultadoIterativas3(string $matriz): string
     {
-        $arr_s = explode('|', $matriz);
-        $m_tmp = array();
-        foreach ($arr_s as $item) {
-            $m_tmp[] = explode(',', $item);
+        $mat_separada = explode("|", $matriz);
+        $mat_nums = array();
+        foreach ($mat_separada as $num) {
+            $mat_nums[] = explode(",", $num);
         }
-        $filas_count = count($m_tmp);
-        $a = array_merge(...$m_tmp);
-        var_dump($a);
-        var_dump($filas_count);
-        var_dump($arr_s);
-        var_dump($m_tmp);
+        $num_count = count($mat_nums[0]);
+        $arr_nums = array_merge(...$mat_nums);
+        sort($arr_nums);
+        $arr_temp = array();
+        $contador = 0;
+        $indice = 0;
+        for ($i = 0; $i < count($arr_nums); $i++) {
+            $arr_temp[$indice][$contador] = $arr_nums[$i];
+            $contador++;
+            if ($contador === $num_count) {
+                $indice++;
+                $contador = 0;
+            }
+        }
+        for ($i = 0; $i < count($arr_temp); $i++) {
+            $arr_temp[$i] = implode(",", $arr_temp[$i]);
+        }
+        $result = implode("|", $arr_temp);
+        return "La matriz ordenada es: " . $result;
+    }
 
-        return "";
+    /**
+     * Ejercicio 4
+     * @param array $input
+     * @param array $errors
+     * @return void
+     * @throws \Exception
+     */
+    public function iterativas4(array $input = [], array $errors = []): void
+    {
+        $data = array(
+            'titulo' => 'Iterativas 4',
+            'breadcrumb' => ['Inicio', 'Iterativas', 'Iterativas 4'],
+            'errors' => $errors,
+            'input' => $input
+        );
+        $this->view->showViews(
+            array('templates/header.view.php', 'iterativas4.view.php', 'templates/footer.view.php'),
+            $data
+        );
+    }
+
+    public function doIterativas4(): void
+    {
+        $errors = $this->checkErrorsIterativas4($_POST);
+        $input = filter_var_array($_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        if ($errors !== []) {
+            $this->iterativas4($input, $errors);
+        } else {
+            $input['resultado'] = $this->resultadoIterativas4($_POST['texto']);
+            $this->iterativas4($input);
+        }
+    }
+
+    private function resultadoIterativas4(mixed $texto)
+    {
+        $clean_text = mb_strtolower(preg_replace('/\P{L}/u', '', $texto));
+        $txt_arr = mb_str_split($clean_text);
+        $resultado_arr = [];
+        foreach ($txt_arr as $letter) {
+            if (isset($resultado_arr[$letter])) {
+                $resultado_arr[$letter]++;
+            } else {
+                $resultado_arr[$letter] = 1;
+            }
+        }
+        $resultado = "";
+        foreach ($resultado_arr as $letter => $value) {
+            $resultado .= $letter . "=>" . $value . ", ";
+        }
+        return "Las letras son: " . rtrim($resultado, ", ");
+    }
+
+    private function checkErrorsIterativas4(array $data): array
+    {
+        $errors = array();
+        if ($data['texto'] === '') {
+            $errors['texto'] = 'Inserte un texto';
+        } else {
+            $texto = preg_replace('/\P{L}/u', '', $data['texto']);
+            if ($texto === '') {
+                $errors['texto'] = 'El texto no contiene ninguna letras';
+            }
+        }
+
+        return $errors;
     }
 }

@@ -54,6 +54,22 @@ class FrontController
             },
             'post'
         );
+        Route::add(
+            '/iterativas4',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\IterativasController();
+                $controlador->iterativas4();
+            },
+            'get'
+        );
+        Route::add(
+            '/iterativas4',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\IterativasController();
+                $controlador->doIterativas4();
+            },
+            'post'
+        );
 
         /**
          * Errores
