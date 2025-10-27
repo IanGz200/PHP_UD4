@@ -78,30 +78,20 @@ class IterativasController extends BaseController
 
     private function resultadoIterativas3(string $matriz): string
     {
-        $mat_separada = explode("|", $matriz);
-        $mat_nums = array();
-        foreach ($mat_separada as $num) {
-            $mat_nums[] = explode(",", $num);
+        $arr_s = explode('|', $matriz);
+        $m_tmp = array();
+        foreach ($arr_s as $item) {
+            $m_tmp[] = explode(',', $item);
         }
-        $num_count = count($mat_nums[0]);
-        $arr_nums = array_merge(...$mat_nums);
-        sort($arr_nums);
-        $arr_temp = array();
-        $contador = 0;
-        $indice = 0;
-        for ($i = 0; $i < count($arr_nums); $i++) {
-            $arr_temp[$indice][$contador] = $arr_nums[$i];
-            $contador++;
-            if ($contador === $num_count) {
-                $indice++;
-                $contador = 0;
-            }
+        $filas_count = count($m_tmp[0]);
+        $tmp = array_merge(...$m_tmp);
+        sort($tmp);
+        $a_anidado = array_chunk($tmp, $filas_count);
+        $a_ordenado = array();
+        for ($i = 0; $i < count($a_anidado); $i++) {
+            $a_ordenado[$i] = implode(',', $a_anidado[$i]);
         }
-        for ($i = 0; $i < count($arr_temp); $i++) {
-            $arr_temp[$i] = implode(",", $arr_temp[$i]);
-        }
-        $result = implode("|", $arr_temp);
-        return "La matriz ordenada es: " . $result;
+        return implode('|', $a_ordenado);
     }
 
     /**
